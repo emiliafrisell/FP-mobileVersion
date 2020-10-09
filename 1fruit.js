@@ -14,11 +14,11 @@ let controller = (function() {
     let speed = 400;
 
     // create fruits html
-    let apple =  '<img class="apple" id="%id%" src="../images/apple.jpg" style="--priceY: %Y%; --priceX:%X%;" />';
-    let pineapple =  '<img class="pineapple"  id="%id%" src="../images/pineapple.jpg" style="--priceY: %Y%; --priceX:%X%;" />';
-    let grapes = '<img class="grapes"  id="%id%" src="../images/grapes.jpg" style="--priceY: %Y%; --priceX:%X%;" />';
-    let orange = '<img class="orange"  id="%id%" src="../images/orange.jpg" style="--priceY: %Y%; --priceX:%X%;" />';
-    let pear =  '<img class="pear" id="%id%" src="../images/pear.jpg" style="--priceY: %Y%; --priceX:%X%;" />';
+    let apple =  '<img class="apple" id="%id%" src="images/apple.jpg" style="--priceY: %Y%; --priceX:%X%;" />';
+    let pineapple =  '<img class="pineapple"  id="%id%" src="images/pineapple.jpg" style="--priceY: %Y%; --priceX:%X%;" />';
+    let grapes = '<img class="grapes"  id="%id%" src="images/grapes.jpg" style="--priceY: %Y%; --priceX:%X%;" />';
+    let orange = '<img class="orange"  id="%id%" src="images/orange.jpg" style="--priceY: %Y%; --priceX:%X%;" />';
+    let pear =  '<img class="pear" id="%id%" src="images/pear.jpg" style="--priceY: %Y%; --priceX:%X%;" />';
 
     // make array with the different fruits
     let fruitArray = [apple, pineapple, grapes, orange, pear];
@@ -108,12 +108,13 @@ let controller = (function() {
         // If any button is pressed on keyboard
         document.addEventListener('keydown', btnPress);   
         
+        // used borrowed code to detect swipes
         document.addEventListener('swiped', function(e) {
             if (e.target.classList.contains('playArea')) {
                 swipeDirection = e.detail.dir;
                 swipe(swipeDirection);
             }
-            // console.log(e.target); // the element that was swiped
+
             console.log(e.detail.dir); // swiped direction
         });
         
@@ -133,6 +134,7 @@ let controller = (function() {
             };
 
          } else if (event.keyCode === 37 || event.which === 37) { // LEFT ARROW key
+            player.style = 'transform: scaleX(1);';
             clearInterval(rightInterval); //Clear all other intervals but the left
             clearInterval(downInterval);
             clearInterval(upInterval);
@@ -153,6 +155,7 @@ let controller = (function() {
             upInterval = setInterval(moveUp, speed);
 
     } else if (event.keyCode === 39 || event.which === 39) { // RIGHT ARROW key
+            player.style = 'transform: scaleX(-1);';
             clearInterval(downInterval); //Clear all other intervals but the right
             clearInterval(leftInterval);
             clearInterval(upInterval);
@@ -174,48 +177,49 @@ let controller = (function() {
     };
 };
 
-// different functions depending on what key is pressed on keyboard
-let swipe = function(direction) {
-    if (direction == 'left') { // LEFT ARROW key
-        clearInterval(rightInterval); //Clear all other intervals but the left
-        clearInterval(downInterval);
-        clearInterval(upInterval);
-        leftCycle = true;
-        rightCycle = false;
-        downCycle = false;
-        upCycle = false;
-        leftInterval = setInterval(moveLeft, speed);
+    // different functions depending on what direction is swiped
+    let swipe = function(direction) {
+        if (direction == 'left') {
+            clearInterval(rightInterval); //Clear all other intervals but the left
+            clearInterval(downInterval);
+            clearInterval(upInterval);
+            leftCycle = true;
+            rightCycle = false;
+            downCycle = false;
+            upCycle = false;
+            leftInterval = setInterval(moveLeft, speed);
 
-} else if (direction == 'up') { // UP ARROW key
-        clearInterval(rightInterval); //Clear all other intervals but the up
-        clearInterval(downInterval);
-        clearInterval(leftInterval);
-        upCycle = true;
-        rightCycle = false;
-        downCycle = false;
-        leftCycle = false;
-        upInterval = setInterval(moveUp, speed);
+    } else if (direction == 'up') { 
+            clearInterval(rightInterval); //Clear all other intervals but the up
+            clearInterval(downInterval);
+            clearInterval(leftInterval);
+            upCycle = true;
+            rightCycle = false;
+            downCycle = false;
+            leftCycle = false;
+            upInterval = setInterval(moveUp, speed);
 
-} else if (direction == 'right') { // RIGHT ARROW key
-        clearInterval(downInterval); //Clear all other intervals but the right
-        clearInterval(leftInterval);
-        clearInterval(upInterval);
-        rightCycle = true;
-        downCycle = false;
-        leftCycle = false;
-        upCycle = false;
-        rightInterval = setInterval(moveRight, speed);
+    } else if (direction == 'right') { 
+            clearInterval(downInterval); //Clear all other intervals but the right
+            clearInterval(leftInterval);
+            clearInterval(upInterval);
+            rightCycle = true;
+            downCycle = false;
+            leftCycle = false;
+            upCycle = false;
+            rightInterval = setInterval(moveRight, speed);
 
-} else if (direction == 'down') { // DOWN ARROW key
-        clearInterval(rightInterval); //Clear all other intervals but the down
-        clearInterval(leftInterval);
-        clearInterval(upInterval);
-        downCycle = true;
-        rightCycle = false;
-        leftCycle = false;
-        upCycle = false;
-        downInterval = setInterval(moveDown, speed);
-};
+    } else if (direction == 'down') { 
+            clearInterval(rightInterval); //Clear all other intervals but the down
+            clearInterval(leftInterval);
+            clearInterval(upInterval);
+            downCycle = true;
+            rightCycle = false;
+            leftCycle = false;
+            upCycle = false;
+            downInterval = setInterval(moveDown, speed);
+    };
+
 };
     const moveLeft = function() {
         if (steps[currentID].y > 1) {
