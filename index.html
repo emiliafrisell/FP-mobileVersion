@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> 
+
+        <link type="text/css" rel="stylesheet" href="style.css" />
+        <title>Grid Game</title>
+
+    </head>
+    <body>
+        <header>
+            <h1>LITTLE FRUIT PICKER</h1>
+        </header>
+        <div class="playArea">
+
+            <!-- START SCREEN -->
+            <p id="instructions">Eat as many fruits as possible, but don't get your feet dirty!</p>
+            <button id="start_game">Start Game</button>    
+
+            <!-- GAME PLAY -->
+            <img src="../images/run.jpg" class="run hide" />
+            <!-- <img src="../images/apple.jpg" class="apple hide" />
+            <img src="../images/pineapple.jpg" class="pineapple hide" />
+            <img src="../images/orange.jpg" class="orange hide" />
+            <img src="../images/grapes.jpg" class="grapes hide" /> -->
+
+            <!-- GAME OVER -->
+            <p id="game_over" class="hide">You stepped in poop!</p>
+            <iframe src="https://giphy.com/embed/LS3GyTEUHandrcndV7" id="poopGIF" class="hide"></iframe>
+            <button id="try_again" class="hide">Try Again</button>    
+
+        </div>
+        
+        <!-- SCORE KEEPER -->
+        <div class="scores">
+            <p id="score"></p>
+            <p id="highScore"></p>
+        </div>
+<!-- 
+        <div class="voice">
+            <button id="voiceComOn" class="">Turn on voice command play mode</button>
+            <p id="output"></p>
+            <p id="hint"></p>
+        </div> -->
+
+        <!-- JAVASCRIPT -->
+        <script src="1fruit.js"></script>
+
+    </body>
+</html>
