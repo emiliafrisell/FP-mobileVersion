@@ -135,4 +135,9 @@ img {
     .playArea {
         width: 100%;
     }
+
+    .scores {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }
