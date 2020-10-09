@@ -375,7 +375,7 @@ let controller = (function() {
         ID ++;
         
         // poop html
-        let html = '<img src="../images/poop.jpg" class="poop" style="--poopY: %Y%; --poopX: %X%;" />';
+        let html = '<img src="images/poop.jpg" class="poop" style="--poopY: %Y%; --poopX: %X%;" />';
 
         // insert position
         let newHTML = html.replace('%Y%', y);
